@@ -30,8 +30,8 @@ int fibonacci_sum_squares_naive(long long n) {
     // (a + b) mod m = ((a mod m) + (b mod m)) mod m
 
     for (int i = 0; i < n - 1; ++i) {
-        int tmp_previous = previous;
-        previous = current;
+        int tmp_previous = previous % 10;
+        previous = current % 10;
         current = (tmp_previous + current) % 10;
         sum =  (sum + current * current) % 10;
     }
