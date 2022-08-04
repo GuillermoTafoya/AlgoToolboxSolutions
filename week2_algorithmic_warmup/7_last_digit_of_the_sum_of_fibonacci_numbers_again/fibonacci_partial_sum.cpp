@@ -18,8 +18,12 @@ long get_pisano_period(long long m) {
 }
 
 int get_fibonacci_partial_sum(long long from, long long to) {
-    to = to % get_pisano_period(10);
-    from = from % get_pisano_period(10);
+    int pisano_period = get_pisano_period(10);
+    to = to % pisano_period;
+    from = from % pisano_period;
+    if (from > to) {
+        to += pisano_period;
+    }
     int sum = 0;
     int current = 0;
     int next  = 1;
