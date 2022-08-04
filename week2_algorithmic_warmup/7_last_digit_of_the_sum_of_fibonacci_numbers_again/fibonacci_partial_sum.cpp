@@ -32,9 +32,9 @@ int get_fibonacci_partial_sum(long long from, long long to) {
             sum = (sum + current) % 10;
         }
 
-        int new_current = next;
-        next = (next + current);
-        current = new_current;
+        int new_current = next % 10;
+        next = (next + current) % 10;
+        current = new_current % 10;
     }
 
     return sum;
