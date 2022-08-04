@@ -11,7 +11,7 @@ int fibonacci_sum_naive(long long n) {
     for (long long i = 0; i < n - 1; ++i) {
         long long tmp_previous = previous;
         previous = current;
-        current = tmp_previous + current;
+        current = (tmp_previous + current) % 10;
         sum = (sum + current) % 10;
     }
 
