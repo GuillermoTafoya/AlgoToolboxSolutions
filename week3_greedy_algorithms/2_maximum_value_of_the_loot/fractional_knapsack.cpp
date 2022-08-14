@@ -5,12 +5,12 @@ using std::vector;
 
 double get_optimal_value(int capacity, vector<int> weights, vector<int> values) {
   double value = 0.0;
-  if (capacity == 0 || weights.size() == 0) {
-    return value;
+  if ((capacity == 0) || (weights.size() == 0)) {
+    return 0;
   }
   int m = 0; // index of the maximum value
   for (int i = 0; i < values.size(); i++) {
-    if (values[i]/weights[i] > values[m]/values[m]) {
+    if ((values[i]/weights[i]) > (values[m]/weights[m])) {
       m = i;
     }
   }
@@ -19,9 +19,6 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
   capacity -= amount;
   weights.erase(weights.begin() + m);
   values.erase(values.begin() + m);
-  for (auto elem : weights) {
-    std::cout << elem << " ";
-  }
   return value + get_optimal_value(capacity, weights, values);
 }
 

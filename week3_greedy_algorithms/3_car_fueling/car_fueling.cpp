@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <climits>
 
 using std::cin;
 using std::cout;
@@ -13,12 +14,12 @@ int compute_min_refills(int location, int dist, int tank, vector<int> & stops) {
     // If the past filter is not enough to reach the destination, check if the current filter is enough to reach the destination.
     // If the stops is empty, given that the distance is not reachable, it is impossible to reach the destination.
     // Also, if the next stop is not reachable, it is impossible to reach the destination.
-    if (stops.size() == 0 || (stops[0] - location) > tank) {
-        return INT_MAX;
+    if ((stops.size() == 0) || ((stops[0] - location) > tank)) {
+        return -INT_MAX;
     }
     int last_refill = location;
     // Look for the furthest reachable stop.
-    while (stops.size() > 0 && (stops[0] - last_refill) <= tank) {
+    while ((stops.size() > 0) && ((stops[0] - location) <= tank)) {
         last_refill = stops[0];
         stops.erase(stops.begin());
     }
@@ -38,7 +39,14 @@ int main() {
     vector<int> stops(n);
     for (size_t i = 0; i < n; ++i)
         cin >> stops.at(i);
-    cout << compute_min_refills(0, d, m, stops) << "\n";
+    int result = compute_min_refills(0, d, m, stops);
+    if (result >= 0) {
+        cout << result;
+    }
+    else {
+        cout << -1;
+    }
+    
 
     return 0;
 }
