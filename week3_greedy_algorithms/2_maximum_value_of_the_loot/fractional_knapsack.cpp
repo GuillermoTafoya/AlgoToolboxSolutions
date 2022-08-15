@@ -14,9 +14,9 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
       m = i;
     }
   }
-  double amount = std::min(capacity, weights[m]);
-  value = amount * values[m] / weights[m];
-  capacity -= amount;
+  int amount = std::min(capacity, weights[m]);
+  value = values[m] * (amount/weights[m]);
+  //capacity -= amount;
   weights.erase(weights.begin() + m);
   values.erase(values.begin() + m);
   return value + get_optimal_value(capacity, weights, values);
