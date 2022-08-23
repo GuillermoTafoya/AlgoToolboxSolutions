@@ -6,7 +6,7 @@ std::vector<double> merge(std::vector<double>& left, std::vector<double>& right)
     // This is intended to be used by the mergeSort function.
     std::vector<double> result;
     while (!left.empty() && !right.empty()) {
-        if (left.front() < right.front()) {
+        if (left.front() > right.front()) {
             result.push_back(left.front());
             left.erase(left.begin());
         } else {
