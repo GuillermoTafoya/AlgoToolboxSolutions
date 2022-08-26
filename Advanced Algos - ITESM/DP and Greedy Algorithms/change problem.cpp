@@ -48,43 +48,42 @@ int main(){
 
     std::cout << "Dynamic Programming\n";
 
-    int minCoins = INT_MAX;
+    int minCoins = 100000;
     // Our objective
     m = Q - P;
 
     // To optimize space, we only need to store the last row of the table
-    std::vector<int> lastRow(m + 1, INT_MAX);
+    std::vector<int> lastRow(m + 1, 100000);
     lastRow[0] = 0;
 
-    for (int i = 0; i < N; i++) {
-        std::vector<int> currentRow(m + 1, INT_MAX);
-        for (int j = 0; j <= m; j++) {
-            if (j >= denominations[i]) {
-                if (lastRow[j - denominations[i]] != INT_MAX) {
-                    currentRow[j] = std::min(currentRow[j], lastRow[j - denominations[i]] + 1);
+    // We iterate over the denominations
+    for(int i = 0; i < N; i++){
+        // We iterate over the values of the objective
+        for(int j = 1; j <= m; j++){
+            // We check if the denomination is less than the value
+            if(denominations[i] <= j){
+                // We check if the number of coins is less than the previous value
+                if(lastRow[j - denominations[i]] + 1 < lastRow[j]){
+                    lastRow[j] = lastRow[j - denominations[i]] + 1;
                 }
             }
-            currentRow[j] = std::min(currentRow[j], lastRow[j]);
-        }
-        lastRow = currentRow;
-    }
-    
-    if (lastRow[m] != INT_MAX) {
-        // We can give change
-        minCoins = lastRow[m];
-    }
-    else { 
-        if (m == 0) {
-            // If the objective is 0, we don't need any coins
-            minCoins = 0;
-        }
-        else {
-            // No solution
-            minCoins = -1;
         }
     }
 
-    std::cout << "Min coins: "<< minCoins << '\n';
+    // We print the number of coins
+    // std::cout << lastRow[m] << '\n';
+
+    // We print the denominations
+    int i = N - 1;
+    while(m > 0){
+        if(lastRow[m] == lastRow[m - denominations[i]] + 1){
+            std::cout << denominations[i] << '\n';
+            m = m - denominations[i];
+        }
+        else{
+            i--;
+        }
+    }
 
 
 
