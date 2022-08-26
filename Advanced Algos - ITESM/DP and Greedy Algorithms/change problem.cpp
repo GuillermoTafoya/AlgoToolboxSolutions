@@ -1,3 +1,6 @@
+// Guillermo Tafoya Milo
+// A01633790
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
