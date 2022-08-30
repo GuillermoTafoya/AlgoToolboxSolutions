@@ -56,7 +56,7 @@ int main(){
     m = Q - P;
 
     // To optimize space, we only need to store the last row of the table
-    std::vector<int> lastRow(m + 1, 100000);
+    std::vector<int> lastRow(m + 1, minCoins);
     lastRow[0] = 0;
 
     // We iterate over the denominations
