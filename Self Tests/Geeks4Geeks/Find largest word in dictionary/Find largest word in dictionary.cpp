@@ -12,7 +12,6 @@ class Solution {
         sort(d.begin(),d.end(), [](std::string& a, std::string& b) {
         return (a.length() == b.length()) ? (a < b) : (a.length() > b.length());
     });
-        int N = S.length();
         for (int i = 0; i < d.size(); i++){
             
             if (isPossible(S,d[i])){
