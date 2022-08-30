@@ -38,7 +38,6 @@ class Solution{
                     currentUniqueCharactersCount--;
                 }
                 left++;
-                
             }
             if (currentUniqueCharactersCount == k){
                 maxSubstring = max(maxSubstring, currentSubstring);
@@ -48,8 +47,6 @@ class Solution{
     return maxSubstring;
     }
 };
-
-
 
 //{ Driver Code Starts.
 int main() {
@@ -64,5 +61,4 @@ int main() {
         cout << ob.longestKSubstr(s, k) << endl;
     }
 }
-
 // } Driver Code Ends
