@@ -24,7 +24,6 @@ class Solution{
             if (currentUniqueCharactersCount == k){
                 maxSubstring = max(maxSubstring, currentSubstring);
             }
-            continue;
         } else{ // It is a new character
             currentUniqueCharacters[s[right]]++;
             currentUniqueCharactersCount++;
