@@ -45,43 +45,41 @@ Floyd :
 #include <algorithm>
 #include <iomanip>
 
-void dijkstra(const std::vector<std::vector<int>> &graph, int source)
+std::vector<int> dijkstra(const std::vector<std::vector<int>> &graph, int source)
 {
     std::vector<int> dist(graph.size(), std::numeric_limits<int>::max());
     std::vector<bool> visited(graph.size(), false);
-
     dist[source] = 0;
-
-    for (int i = 0; i < graph.size(); ++i)
+    for (int i = 0; i < graph.size(); i++)
     {
         int u = -1;
-        for (int j = 0; j < graph.size(); ++j)
+        for (int j = 0; j < graph.size(); j++)
         {
             if (!visited[j] && (u == -1 || dist[j] < dist[u]))
                 u = j;
         }
-
         if (dist[u] == std::numeric_limits<int>::max())
             break;
-
         visited[u] = true;
-
-        for (int v = 0; v < graph.size(); ++v)
+        for (int v = 0; v < graph.size(); v++)
         {
             if (graph[u][v] != -1)
             {
                 int distance = dist[u] + graph[u][v];
-                if (distance < dist[v])
-                    dist[v] = distance;
+                dist[v] = std::min(distance,dist[v]);
             }
         }
-        
     }
-
+    return dist;
+}
+void processDijkstra(const std::vector<std::vector<int>> &graph){
+    int V = graph.size();
+    
     // Print shortest distances
     std::cout << "Dijkstra :" << std::endl;
 
     for (int i = 0; i < graph.size(); ++i){
+        std::vector<int> dist = dijkstra(graph, i);
         for (int j = 0; j < graph.size(); ++j){
             if (i != j){
                 std::cout << "node " << i + 1 << " to node " << j + 1 << " : " << dist[j] << std::endl;
@@ -139,7 +137,7 @@ int main(){
     }
 
     // Dijkstra
-    dijkstra(graph, 0);
+    processDijkstra(graph);
 
     // Floyd
     floyd(graph);
