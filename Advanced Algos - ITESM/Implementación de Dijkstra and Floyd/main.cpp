@@ -91,37 +91,27 @@ void processDijkstra(const std::vector<std::vector<int>> &graph){
 
 void floyd(const std::vector<std::vector<int>> &graph){
     std::vector<std::vector<int>> dist(graph);
-    for (int k = 0; k < graph.size(); ++k)
-    {
-        for (int i = 0; i < graph.size(); ++i)
-        {
-            for (int j = 0; j < graph.size(); ++j)
-            {
-                if (dist[i][k] != -1 && dist[k][j] != -1)
-                {
-                    if (dist[i][j] != -1)
-                    {
+    for (int k = 0; k < graph.size(); k++){
+        for (int i = 0; i < graph.size(); i++){
+            for (int j = 0; j < graph.size(); j++){
+                if (dist[i][k] != -1 && dist[k][j] != -1){
+                    if (dist[i][j] != -1){
                         dist[i][j] = std::min(dist[i][j], dist[i][k] + dist[k][j]);
                     }
-                    else
-                    {
+                    else{
                         dist[i][j] = dist[i][k] + dist[k][j];
                     }
                 }
             }
         }
     }
-
     // Print shortest distances
     std::cout << "Floyd :" << std::endl;
-
-    for (int i = 0; i < graph.size(); ++i)
-    {
-        for (int j = 0; j < graph.size(); ++j)
-        {
+    for (int i = 0; i < graph.size(); ++i){
+        for (int j = 0; j < graph.size(); ++j){
             std::cout << std::setw(2) << dist[i][j] << " ";
         }
-        std::cout << std::endl;
+        std::cout << '\n';
     }
 }
 

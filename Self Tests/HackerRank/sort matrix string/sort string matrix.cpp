@@ -56,9 +56,6 @@ int main()
         file_out.open(filename, ios::out | ios::app);
         file_out << result << "\n";
         file_out.close();
-        
-
-
     }
 
     //fout.close();
